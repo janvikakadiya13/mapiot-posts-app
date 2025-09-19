@@ -34,21 +34,21 @@ export const PostContainer = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState<"list" | "grid">("list"); // Default to list
 
-  useEffect(() => {
-    // Fetch posts from API on component mount
-    const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await apiService.fetchPosts();
-        setPosts(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Unknown error");
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Fetch posts from API on component mount
+  const fetchPosts = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await apiService.fetchPosts();
+      setPosts(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unknown error");
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchPosts();
   }, []);
 
@@ -56,9 +56,7 @@ export const PostContainer = () => {
     usePostPagination(posts, searchTerm);
 
   const handleRetry = () => {
-    setError(null);
-    setPosts([]);
-    setLoading(true);
+    fetchPosts();
   };
 
   if (loading) {
@@ -97,7 +95,7 @@ export const PostContainer = () => {
       </Typography>
 
       {error && (
-        <Alert severity="error" sx={{ mb: 3 }}>
+        <Alert severity="error" sx={{ mb: 3, alignItems: "center" }}>
           {error}
           <Button
             color="inherit"
