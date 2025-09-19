@@ -35,3 +35,7 @@ This is a React-based web application developed as part of the MapIot.ai Fronten
    npm install
    npm start
 
+
+## Live Link
+- https://mapiot-posts-app.vercel.app/
+- <video controls src="demo.webm" title="Title"></video>
