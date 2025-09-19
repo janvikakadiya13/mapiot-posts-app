@@ -1,9 +1,10 @@
 import './App.css';
+import PostContainer from './containers/PostContainer';
 
 function App() {
   return (
     <div className="App">
-      React App
+      <PostContainer/>
     </div>
   );
 }
